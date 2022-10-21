@@ -1,5 +1,6 @@
 import {
   fakeAsync,
+  flush,
   TestBed,
   tick,
   waitForAsync,
@@ -68,10 +69,12 @@ describe('AppComponent', () => {
       );
     });
   }));
+
   it('should render book details - fakeAsync', fakeAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    tick(4000);
+    // tick(4000);
+    flush();
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('div')!.textContent).toContain(
